@@ -20,7 +20,12 @@ void main() {
 }
 
 void playGame() {
-  var game = Game();
+
+  stdout.write('Enter a maximum number to random : ');
+  var input = stdin.readLineSync();
+  var max = int.tryParse(input!);
+
+  var game = Game(a:max!);
   var isCorrect = false;
 
   print('╔════════════════════════════════════════');
@@ -28,7 +33,7 @@ void playGame() {
   print('╟────────────────────────────────────────');
 
   do {
-    stdout.write('║ Guess the number between 1 and ${Game.maxRandom}: ');
+    stdout.write('║ Guess the number between 1 and ${game.maxRandom}: ');
     var input = stdin.readLineSync();
     var guess = int.tryParse(input!);
     if (guess == null) {
