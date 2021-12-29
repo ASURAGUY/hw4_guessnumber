@@ -4,6 +4,8 @@ class Game {
   int _maxRandom = 0;
   int? _answer;
   int _guessCount = 0;
+  static var myList = <int>[];
+
 
   Game({int a = 100}) {
     _maxRandom = a;
@@ -16,6 +18,7 @@ class Game {
   }
 
   int get guessCount {
+    myList.add(_guessCount);
     return _guessCount;
   }
 

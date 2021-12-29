@@ -7,25 +7,35 @@ void main() {
   while (true) {
     playGame();
     String? input;
+    var len = Game.myList.length;
 
     do {
       stdout.write('Play again? (Y/N): ');
       input = stdin.readLineSync();
     } while (input!.toLowerCase() != 'y' && input.toLowerCase() != 'n');
 
-    if (input.toLowerCase() == 'n') break;
+    if (input.toLowerCase() == 'n') {
+      print('╔════════════════════════════════════════');
+      print("║        You've played $len games");
+      print('╟────────────────────────────────────────');
+      for (int i = 0; i < len; i++) {
+        print('║ 🚀 Game # ${i + 1} : ${Game.myList[i]} guesses');
+      }
+      print('╟────────────────────────────────────────');
+      print("║       ❤❤ THANKS FOR PLAYING ❤❤");
+      print('╚════════════════════════════════════════');
+      break;
+    }
   }
 
   // end of program
 }
 
 void playGame() {
-
   stdout.write('Enter a maximum number to random : ');
   var input = stdin.readLineSync();
   var max = int.tryParse(input!);
-
-  var game = Game(a:max!);
+  var game = Game(a: max!);
   var isCorrect = false;
 
   print('╔════════════════════════════════════════');
@@ -51,6 +61,7 @@ void playGame() {
     } else if (result == 0) {
       print('║ ➜ $guess is CORRECT ❤, total guesses: ${game.guessCount}');
       print('╟────────────────────────────────────────');
+
       isCorrect = true;
     }
   } while (!isCorrect);
@@ -58,3 +69,4 @@ void playGame() {
   print('║                 THE END                ');
   print('╚════════════════════════════════════════');
 }
+
